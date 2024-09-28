@@ -7,11 +7,14 @@ import {
   WebElement,
 } from "selenium-webdriver";
 import { assert, expect } from "chai";
+import { testConfig } from "../../testConfig";
 
 describe("what to expect when first visitting todos app page", async () => {
+  
   let driver: WebDriver;
-
+  
   //test constants
+  const { baseUrl } = testConfig;
   const inputPlaceholder = "What needs to be done?";
   const headerText = "todos";
 
@@ -21,7 +24,7 @@ describe("what to expect when first visitting todos app page", async () => {
 
   before(async () => {
     driver = await new Builder().forBrowser("safari").build();
-    await driver.get("https://demo.playwright.dev/todomvc");
+    await driver.get(baseUrl);
 
     // elements intialisations
     inputBox = await driver.findElement(By.css("input.new-todo"));
